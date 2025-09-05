@@ -12,31 +12,17 @@ from sigma.collection import SigmaCollection
 from sigma.exceptions import SigmaTransformationError
 
 from sigma.backends.uberagent import uberagent as uberagent_backend
-from sigma.pipelines.uberagent import uberagent620, uberagent700, uberagent710, uberagent720, uberagent730, uberagent740, uberagent_develop
+from sigma.pipelines.uberagent import uberagent720, uberagent730, uberagent740, uberagent750, uberagent_develop
 from sigma.backends.uberagent.exceptions import MissingPropertyException
 
 def get_backends():
     return {
         "uberAgent (develop)": convert_uberagent_develop,
+        "uberAgent 7.5": convert_uberagent750,
         "uberAgent 7.4": convert_uberagent740,
         "uberAgent 7.3": convert_uberagent730,
-        "uberAgent 7.2": convert_uberagent720,
-        "uberAgent 7.1": convert_uberagent710,
-        "uberAgent 7.0": convert_uberagent700,
-        "uberAgent 6.2": convert_uberagent620
+        "uberAgent 7.2": convert_uberagent720
     }
-
-
-def convert_uberagent620(rule: SigmaCollection):
-    return uberagent_backend(processing_pipeline=uberagent620()).convert(rule, "conf")
-
-
-def convert_uberagent700(rule: SigmaCollection):
-    return uberagent_backend(processing_pipeline=uberagent700()).convert(rule, "conf")
-
-
-def convert_uberagent710(rule: SigmaCollection):
-    return uberagent_backend(processing_pipeline=uberagent710()).convert(rule, "conf")
 
 
 def convert_uberagent720(rule: SigmaCollection):
@@ -49,6 +35,10 @@ def convert_uberagent730(rule: SigmaCollection):
 
 def convert_uberagent740(rule: SigmaCollection):
     return uberagent_backend(processing_pipeline=uberagent740()).convert(rule, "conf")
+
+
+def convert_uberagent750(rule: SigmaCollection):
+    return uberagent_backend(processing_pipeline=uberagent750()).convert(rule, "conf")
 
 
 def convert_uberagent_develop(rule: SigmaCollection):
